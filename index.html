@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="es-CL">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aogane · Afilado artesanal de cuchillos</title>
+  <meta name="description" content="Afilado artesanal de cuchillos profesionales en Santiago y venta de cuchillos japoneses Dao Vua en acero 52100.">
+  <meta property="og:title" content="Aogane · Afilado artesanal">
+  <meta property="og:description" content="Cuchillos en buen estado a la hora del servicio. Afilado a mano en Peñalolén, Santiago.">
+  <meta property="og:image" content="img/logo.png">
+  <link rel="icon" href="img/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@600;800&family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a href="#inicio" class="brand">
+        <span class="brand-mark">AOGANE</span>
+        <span class="brand-kanji">青金</span>
+      </a>
+      <nav class="nav" id="nav">
+        <a href="#afilado">Afilado</a>
+        <a href="#tienda">Tienda</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <button class="cart-btn" id="cartOpen" aria-label="Abrir carrito">
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3 4h2l2.4 10.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 1.9-1.5L21 8H6.2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="20" r="1.4" fill="currentColor"/><circle cx="17" cy="20" r="1.4" fill="currentColor"/></svg>
+        <span class="cart-count" id="cartCount" hidden>0</span>
+      </button>
+      <button class="menu-btn" id="menuBtn" aria-label="Menú" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- INICIO -->
+    <section class="hero" id="inicio">
+      <svg class="cloud cloud-a" viewBox="0 0 200 80" aria-hidden="true"><use href="#cloud"/></svg>
+      <svg class="cloud cloud-b" viewBox="0 0 200 80" aria-hidden="true"><use href="#cloud"/></svg>
+      <div class="wrap hero-inner">
+        <div class="hero-text">
+          <p class="eyebrow">Afilado artesanal · Santiago</p>
+          <h1>Filo de servicio para <em>cocinas profesionales</em></h1>
+          <p class="lead">Afilamos a mano en nuestro taller de Peñalolén para que tus cuchillos lleguen listos a cada servicio. También vendemos cuchillos japoneses forjados en acero 52100.</p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" id="heroWhatsapp" href="#" target="_blank" rel="noopener">Cotizar afilado por WhatsApp</a>
+            <a class="btn btn-ghost" href="#tienda">Ver cuchillos</a>
+          </div>
+        </div>
+        <div class="hero-logo logo-wrap">
+          <img src="img/logo.png" alt="Logo Aogane: pavo real azul con el texto Afilado artesanal, cuchillos profesionales" onerror="this.parentElement.classList.add('no-logo')">
+          <div class="logo-fallback" aria-hidden="true">
+            <span class="lf-kanji">青金</span>
+            <span class="lf-name">AOGANE</span>
+            <span class="lf-sub">Afilado artesanal</span>
+          </div>
+        </div>
+      </div>
+      <svg class="waves" viewBox="0 0 1200 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40 Q 50 10 100 40 T 200 40 T 300 40 T 400 40 T 500 40 T 600 40 T 700 40 T 800 40 T 900 40 T 1000 40 T 1100 40 T 1200 40 V60 H0 Z"/></svg>
+    </section>
+
+    <!-- AFILADO -->
+    <section class="section section-alt" id="afilado">
+      <div class="wrap">
+        <header class="section-head">
+          <span class="kanji-tag">研</span>
+          <h2>Servicio de afilado</h2>
+          <p>Mantención con piedras al agua. Antes de cotizar evaluamos el estado del acero con una foto.</p>
+        </header>
+
+        <div class="price-grid" id="priceGrid"></div>
+
+        <ol class="steps">
+          <li><span class="step-n">1</span><h3>Envía una foto</h3><p>Escríbenos por WhatsApp con una foto de tus cuchillos y cuántas piezas son.</p></li>
+          <li><span class="step-n">2</span><h3>Confirmamos agenda</h3><p>Te damos el presupuesto exacto y coordinamos la entrega en Metro Grecia.</p></li>
+          <li><span class="step-n">3</span><h3>Afilado en taller</h3><p>Trabajamos cada hoja a mano en nuestro taller de Peñalolén.</p></li>
+          <li><span class="step-n">4</span><h3>Listos para el servicio</h3><p>Te devolvemos los cuchillos con el filo listo para la cocina.</p></li>
+        </ol>
+
+        <div class="note">
+          <strong>¿Estás en regiones?</strong> Puedes enviarnos tus cuchillos por courier. El envío y el retorno son por pagar, de cargo del cliente.
+        </div>
+      </div>
+    </section>
+
+    <!-- TIENDA -->
+    <section class="section" id="tienda">
+      <div class="wrap">
+        <header class="section-head">
+          <span class="kanji-tag">刃</span>
+          <h2>Tienda</h2>
+          <p>Cuchillos <strong>Dao Vua</strong>, forjados a mano en Vietnam en acero al carbono 52100: alta dureza, filo duradero y fácil de reafilar.</p>
+        </header>
+        <div class="product-grid" id="productGrid"></div>
+        <p class="care">El acero al carbono puede oxidarse: sécalo después de cada uso y guárdalo limpio. Con el tiempo forma una pátina natural que lo protege.</p>
+      </div>
+    </section>
+
+    <!-- NOSOTROS -->
+    <section class="section section-alt" id="nosotros">
+      <div class="wrap about">
+        <div class="about-text">
+          <span class="kanji-tag">青金</span>
+          <h2>Sobre Aogane</h2>
+          <p>Aogane nace de una necesidad muy concreta: tener cuchillos en buen estado a la hora del servicio en cocina.</p>
+          <p>Conozco el rubro desde adentro y sé lo que significa trabajar con una hoja que no corta en plena hora punta. En ese problema encontré un servicio, un rubro y una vocación.</p>
+          <p>Hoy afilamos para cocineros, restaurantes y amantes de la cocina, y seleccionamos cuchillos que valen la pena mantener por años.</p>
+        </div>
+        <div class="about-gallery" id="gallery"></div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="section" id="contacto">
+      <div class="wrap contact">
+        <div>
+          <header class="section-head left">
+            <span class="kanji-tag">話</span>
+            <h2>Contacto</h2>
+          </header>
+          <ul class="contact-list" id="contactList"></ul>
+          <a class="btn btn-primary" id="contactWhatsapp" href="#" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>
+        </div>
+        <div class="map">
+          <iframe title="Mapa de Metro Grecia, punto de entrega" src="https://maps.google.com/maps?q=Metro%20Grecia%2C%20Pe%C3%B1alol%C3%A9n%2C%20Santiago&z=15&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <span class="brand-mark">AOGANE</span>
+      <span>Afilado artesanal · Cuchillos profesionales · Santiago, Chile</span>
+      <span id="year"></span>
+    </div>
+  </footer>
+
+  <!-- CARRITO -->
+  <div class="drawer-backdrop" id="backdrop" hidden></div>
+  <aside class="drawer" id="drawer" aria-label="Carrito" aria-hidden="true">
+    <div class="drawer-head">
+      <h2>Tu carrito</h2>
+      <button class="icon-btn" id="cartClose" aria-label="Cerrar carrito">✕</button>
+    </div>
+    <div class="drawer-body">
+      <ul class="cart-items" id="cartItems"></ul>
+      <p class="cart-empty" id="cartEmpty">Tu carrito está vacío.</p>
+
+      <form class="checkout" id="checkoutForm" hidden>
+        <fieldset>
+          <legend>Entrega</legend>
+          <label class="radio"><input type="radio" name="entrega" value="retiro" checked> Retiro en Metro Grecia <small>(coordinamos día y hora)</small></label>
+          <label class="radio"><input type="radio" name="entrega" value="regiones"> Envío a regiones <small>(por pagar, de cargo del cliente)</small></label>
+        </fieldset>
+        <label>Nombre <input name="nombre" required autocomplete="name"></label>
+        <label>Teléfono <input name="telefono" type="tel" required autocomplete="tel"></label>
+        <label>Correo <input name="email" type="email" required autocomplete="email"></label>
+        <label class="only-regiones" hidden>Dirección y ciudad <input name="direccion" autocomplete="street-address"></label>
+        <div class="cart-total"><span>Total</span><strong id="cartTotal">$0</strong></div>
+        <button class="btn btn-primary btn-block" type="submit" id="payBtn">Pagar con Mercado Pago</button>
+        <p class="form-msg" id="formMsg" role="status"></p>
+      </form>
+    </div>
+  </aside>
+
+  <a class="wa-float" id="waFloat" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.6c-2 0-4-.6-5.7-1.6l-.4-.2-3.9 1 1-3.8-.3-.4A10.6 10.6 0 1 1 16 26.6zm5.8-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8.7 8.7 0 0 1-4.3-3.7c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4 3.6 3.6 0 0 0-1.1 2.7 6.3 6.3 0 0 0 1.3 3.3 14.4 14.4 0 0 0 5.5 4.9c2 .9 2.8.9 3.9.8a3.3 3.3 0 0 0 2.1-1.5 2.7 2.7 0 0 0 .2-1.5c0-.2-.3-.3-.6-.4z"/></svg>
+  </a>
+
+  <!-- Nube decorativa reutilizable -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="cloud" viewBox="0 0 200 80">
+      <path d="M20 60 Q8 60 8 50 Q8 40 20 40 Q22 24 40 24 Q50 8 72 14 Q86 2 104 12 Q124 6 132 24 Q152 20 158 36 Q180 34 184 50 Q186 62 172 62 Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M60 46 q8 -10 18 0 q-8 6 -14 0 M110 40 q10 -12 22 0 q-10 8 -16 0" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+    </symbol>
+  </svg>
+
+  <script src="products.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

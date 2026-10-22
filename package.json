@@ -1,0 +1,7 @@
+{
+  "name": "aogane-web",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  }
+}
