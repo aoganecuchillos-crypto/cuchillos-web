@@ -142,6 +142,10 @@ h1, h2, h3 { font-family: var(--serif); line-height: 1.2; margin: 0 0 .5em; }
 
 /* ---------- Tienda ---------- */
 .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.linea + .linea { margin-top: 64px; }
+.linea-head { margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+.linea-head h3 { font-size: 28px; margin-bottom: 4px; }
+.linea-head p { color: var(--muted); margin: 0; }
 .product {
   background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
   display: flex; flex-direction: column; overflow: hidden;
@@ -266,7 +270,15 @@ h1, h2, h3 { font-family: var(--serif); line-height: 1.2; margin: 0 0 .5em; }
   .topbar-inner { gap: 8px; }
   .hero { padding: 40px 0 90px; }
   .section { padding: 64px 0; }
-  .price-grid, .product-grid, .steps { grid-template-columns: 1fr; }
+  .price-grid, .steps { grid-template-columns: 1fr; }
+  .product-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .product-body { padding: 14px; }
+  .product h3 { font-size: 19px; }
+  .product p { font-size: 13px; }
+  .product .acero { font-size: 12px; margin-bottom: 12px; }
+  .product-foot { flex-direction: column; align-items: stretch; gap: 8px; }
+  .product-price { font-size: 19px; }
+  .linea-head h3 { font-size: 23px; }
   .care, .care ul { grid-template-columns: 1fr; }
   .brand-kanji { display: none; }
 }

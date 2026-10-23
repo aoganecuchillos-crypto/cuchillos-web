@@ -20,73 +20,182 @@ var AFILADO = [
   { nombre: "Cuchillos pequeños", ejemplos: "Petty, Puntilla", precio: 6000 }
 ];
 
+// Cada línea de cuchillos aparece como un bloque separado en la tienda
+var LINEAS = [
+  {
+    id: "daovua",
+    titulo: "Dao Vua · Forjado artesanal",
+    texto: "Forjados a mano en Vietnam en acero al carbono 52100: retención de filo y resistencia al desgaste muy superiores al estándar."
+  },
+  {
+    id: "xinzuo",
+    titulo: "Xinzuo",
+    texto: "Aceros damasco y núcleos japoneses de alta dureza, con terminaciones premium."
+  }
+];
+
 var PRODUCTS = [
+  // ---------- DAO VUA ----------
   {
     id: "dv-gyuto",
+    linea: "daovua",
     nombre: "Gyuto",
     marca: "Dao Vua",
     forma: "gyuto",
     imagen: "img/gyuto.jpg",
+    acero: "Acero 52100 al carbono · Forjado a mano",
     descripcion: "El cuchillo de chef japonés. Versátil para cortar proteínas, verduras y hierbas.",
-    precio: null
+    precio: 169990
   },
   {
     id: "dv-bunka",
+    linea: "daovua",
     nombre: "Bunka",
     marca: "Dao Vua",
     forma: "kiricleaver",
     imagen: "img/bunka.jpg",
+    acero: "Acero 52100 al carbono · Forjado a mano",
     descripcion: "Punta en ángulo y hoja ancha. Cómodo y preciso para el corte diario de verduras y proteínas.",
     precio: null
   },
   {
     id: "dv-nakiri",
+    linea: "daovua",
     nombre: "Nakiri",
     marca: "Dao Vua",
     forma: "nakiri",
     imagen: "img/nakiri.jpg",
+    acero: "Acero 52100 al carbono · Forjado a mano",
     descripcion: "Hoja recta y rectangular, ideal para verduras y cortes finos y parejos.",
-    precio: null
+    precio: 159990
   },
   {
     id: "dv-yanagiba",
+    linea: "daovua",
     nombre: "Yanagiba",
     marca: "Dao Vua",
     forma: "yanagiba",
     imagen: "img/yanagiba.jpg",
+    acero: "Acero 52100 al carbono · Forjado a mano",
     descripcion: "Hoja larga y delgada para cortar pescado crudo en un solo movimiento.",
-    precio: null
+    precio: 169990
   },
   {
     id: "dv-deba",
+    linea: "daovua",
     nombre: "Deba",
     marca: "Dao Vua",
     forma: "deba",
     imagen: "img/deba.jpg",
+    acero: "Acero 52100 al carbono · Forjado a mano",
     descripcion: "Hoja gruesa y pesada para despiezar pescado y trabajar huesos pequeños.",
-    precio: null
+    precio: 159990
   },
   {
     id: "dv-cleaver",
+    linea: "daovua",
     nombre: "Cleaver",
     marca: "Dao Vua",
     forma: "cleaver",
     imagen: "img/cleaver.jpg",
+    acero: "Acero 52100 al carbono · Forjado a mano",
     descripcion: "Hoja ancha de estilo chino. Pica, aplasta y traslada ingredientes.",
-    precio: null
+    precio: 169990
   },
   {
     id: "dv-kiri-cleaver",
+    linea: "daovua",
     nombre: "Kiri-Cleaver",
     marca: "Dao Vua",
     forma: "kiricleaver",
     imagen: "img/kiri-cleaver.jpg",
+    acero: "Acero 52100 al carbono · Forjado a mano",
     descripcion: "Cleaver con punta en ángulo tipo kiritsuke. Más control en cortes de precisión.",
-    precio: null
+    precio: 169990
+  },
+
+  // ---------- XINZUO ----------
+  {
+    id: "xz-pm80-bunka",
+    linea: "xinzuo",
+    nombre: "Bunka",
+    marca: "Xinzuo · Serie PM80",
+    forma: "kiricleaver",
+    acero: "Damasco 67 capas · 60±1 HRC",
+    descripcion: "Punta en ángulo y hoja ancha para el corte diario, con el dibujo del damasco de 67 capas.",
+    precio: 159990
+  },
+  {
+    id: "xz-f3s-deba",
+    linea: "xinzuo",
+    nombre: "Deba",
+    marca: "Xinzuo · Serie F3S",
+    forma: "deba",
+    acero: "Acero 10Cr15CoMoV · 60±1 HRC",
+    descripcion: "Hoja robusta para despiezar pescado. Acero inoxidable premium con muy buena retención de filo.",
+    precio: 224990
+  },
+  {
+    id: "xz-f3s-sashimi",
+    linea: "xinzuo",
+    nombre: "Sashimi",
+    marca: "Xinzuo · Serie F3S",
+    forma: "yanagiba",
+    acero: "Acero 10Cr15CoMoV · 60±1 HRC",
+    descripcion: "Hoja larga para cortes limpios de pescado crudo, en acero inoxidable premium.",
+    precio: 224990
+  },
+  {
+    id: "xz-f3-sakimaru",
+    linea: "xinzuo",
+    nombre: "Sakimaru",
+    marca: "Xinzuo · Serie F3",
+    forma: "yanagiba",
+    acero: "Damasco 110 capas · 60±1 HRC",
+    descripcion: "Cuchillo de sashimi con punta redondeada. Una pieza de colección en damasco de 110 capas.",
+    precio: 279990
+  },
+  {
+    id: "xz-pm8b-nakiri",
+    linea: "xinzuo",
+    nombre: "Nakiri",
+    marca: "Xinzuo · Serie PM8B",
+    forma: "nakiri",
+    acero: "Núcleo japonés Aogami #2 · 62-64 HRC",
+    descripcion: "Hoja recta para verduras con núcleo de acero azul japonés: filo muy fino y duradero.",
+    precio: 234990
+  },
+  {
+    id: "xz-pm8b-bunka",
+    linea: "xinzuo",
+    nombre: "Bunka",
+    marca: "Xinzuo · Serie PM8B",
+    forma: "kiricleaver",
+    acero: "Núcleo japonés Aogami #2 · 62-64 HRC",
+    descripcion: "Bunka con núcleo de acero azul japonés, para quien busca el máximo filo.",
+    precio: 249990
+  },
+  {
+    id: "xz-x08c-nakiri",
+    linea: "xinzuo",
+    nombre: "Nakiri",
+    marca: "Xinzuo · Serie X08C",
+    forma: "nakiri",
+    acero: "Damasco 53 capas con cobre · 59-61 HRC",
+    descripcion: "Nakiri en damasco con capas de cobre: una hoja tan funcional como llamativa.",
+    precio: 254990
+  },
+  {
+    id: "xz-x08c-bunka",
+    linea: "xinzuo",
+    nombre: "Bunka",
+    marca: "Xinzuo · Serie X08C",
+    forma: "kiricleaver",
+    acero: "Damasco 53 capas con cobre · 59-61 HRC",
+    descripcion: "Bunka en damasco con capas de cobre, de terminación premium.",
+    precio: 259990
   }
 ];
-
-var ACERO = "Acero 52100 · Hecho a mano en Vietnam";
 
 // Fotos para la sección "Sobre Aogane". Sube las fotos a la carpeta img/
 // y agrégalas así: { src: "img/taller1.jpg", alt: "Afilando un gyuto en piedra" },

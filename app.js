@@ -64,31 +64,43 @@
   }
 
   function renderProducts() {
-    $("#productGrid").innerHTML = PRODUCTS.map(function (p, i) {
-      var img = p.imagen
-        ? '<img src="' + esc(p.imagen) + '" alt="Cuchillo ' + esc(p.marca + " " + p.nombre) + '" loading="lazy">'
-        : knifeSvg(p.forma, i);
-      var hasPrice = typeof p.precio === "number" && p.precio > 0;
-      var price = hasPrice
-        ? '<span class="product-price">' + money(p.precio) + "</span>"
-        : '<span class="product-price consultar">Consultar precio</span>';
-      var btn = hasPrice
-        ? '<button class="btn btn-blue" data-add="' + esc(p.id) + '">Agregar</button>'
-        : '<a class="btn btn-ghost" target="_blank" rel="noopener" href="' +
-            waLink("Hola Aogane, quiero consultar por el cuchillo " + p.marca + " " + p.nombre + ".") + '">Consultar</a>';
+    $("#productGrid").innerHTML = LINEAS.map(function (l) {
+      var items = PRODUCTS.filter(function (p) { return p.linea === l.id; });
+      if (!items.length) return "";
       return (
-        '<article class="product">' +
-          '<div class="product-img">' + img + "</div>" +
-          '<div class="product-body">' +
-            '<span class="product-brand">' + esc(p.marca) + "</span>" +
-            "<h3>" + esc(p.nombre) + "</h3>" +
-            "<p>" + esc(p.descripcion) + "</p>" +
-            '<p class="acero">' + esc(ACERO) + "</p>" +
-            '<div class="product-foot">' + price + btn + "</div>" +
-          "</div>" +
-        "</article>"
+        '<div class="linea">' +
+          '<header class="linea-head"><h3>' + esc(l.titulo) + "</h3><p>" + esc(l.texto) + "</p></header>" +
+          '<div class="product-grid">' + items.map(productCard).join("") + "</div>" +
+        "</div>"
       );
     }).join("");
+  }
+
+  function productCard(p) {
+    var i = PRODUCTS.indexOf(p);
+    var img = p.imagen
+      ? '<img src="' + esc(p.imagen) + '" alt="Cuchillo ' + esc(p.marca + " " + p.nombre) + '" loading="lazy">'
+      : knifeSvg(p.forma, i);
+    var hasPrice = typeof p.precio === "number" && p.precio > 0;
+    var price = hasPrice
+      ? '<span class="product-price">' + money(p.precio) + "</span>"
+      : '<span class="product-price consultar">Consultar precio</span>';
+    var btn = hasPrice
+      ? '<button class="btn btn-blue" data-add="' + esc(p.id) + '">Agregar</button>'
+      : '<a class="btn btn-ghost" target="_blank" rel="noopener" href="' +
+          waLink("Hola Aogane, quiero consultar por el cuchillo " + p.marca + " " + p.nombre + ".") + '">Consultar</a>';
+    return (
+      '<article class="product">' +
+        '<div class="product-img">' + img + "</div>" +
+        '<div class="product-body">' +
+          '<span class="product-brand">' + esc(p.marca) + "</span>" +
+          "<h3>" + esc(p.nombre) + "</h3>" +
+          "<p>" + esc(p.descripcion) + "</p>" +
+          '<p class="acero">' + esc(p.acero || "") + "</p>" +
+          '<div class="product-foot">' + price + btn + "</div>" +
+        "</div>" +
+      "</article>"
+    );
   }
 
   function renderGallery() {
