@@ -8,7 +8,7 @@
 var SITE = {
   whatsapp: "56978473454",
   telefonoVisible: "+56 9 7847 3454",
-  instagram: "", // ej: "aogane.cl" (sin @). Vacío = no se muestra
+  instagram: "aogane.cuchillos", // sin @. Vacío = no se muestra
   correo: "",    // ej: "contacto@aogane.cl". Vacío = no se muestra
   taller: "Peñalolén, Santiago",
   puntoEntrega: "Metro Grecia (Línea 4)"
