@@ -42,7 +42,8 @@ h1, h2, h3 { font-family: var(--serif); line-height: 1.2; margin: 0 0 .5em; }
   border-bottom: 1px solid var(--line);
 }
 .topbar-inner { display: flex; align-items: center; gap: 24px; height: 64px; }
-.brand { display: flex; align-items: baseline; gap: 8px; text-decoration: none; margin-right: auto; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; margin-right: auto; }
+.brand-logo { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
 .brand-mark { font-family: var(--serif); font-weight: 800; font-size: 22px; letter-spacing: .14em; color: var(--orange); }
 .brand-kanji { font-family: var(--serif); color: var(--orange); font-size: 14px; }
 .nav { display: flex; gap: 28px; }
@@ -146,7 +147,7 @@ h1, h2, h3 { font-family: var(--serif); line-height: 1.2; margin: 0 0 .5em; }
   display: flex; flex-direction: column; overflow: hidden;
 }
 .product-img {
-  background: linear-gradient(160deg, #fbf8f1, #efe8db); aspect-ratio: 16 / 9;
+  background: linear-gradient(160deg, #fbf8f1, #efe8db); aspect-ratio: 2 / 3;
   display: grid; place-items: center; padding: 16px; position: relative;
 }
 .product-img svg { width: 92%; height: auto; }
@@ -160,7 +161,16 @@ h1, h2, h3 { font-family: var(--serif); line-height: 1.2; margin: 0 0 .5em; }
 .product-price { font-family: var(--serif); font-size: 24px; font-weight: 800; color: var(--orange); }
 .product-price.consultar { font-family: var(--sans); font-size: 15px; font-weight: 500; color: var(--muted); }
 .product-foot .btn { padding: 10px 18px; font-size: 14px; }
-.care { text-align: center; color: var(--muted); font-size: 14px; max-width: 640px; margin: 40px auto 0; }
+.care {
+  margin-top: 56px; background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 32px; display: grid; grid-template-columns: 1fr 2fr; gap: 32px; align-items: start;
+}
+.care h3 { font-size: 26px; }
+.care > div > p { color: var(--muted); margin: 0; }
+.care ul { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 16px 24px; }
+.care li { padding-left: 28px; position: relative; color: var(--muted); font-size: 15px; }
+.care li strong { color: var(--ink); display: block; }
+.care li::before { content: "研"; position: absolute; left: 0; top: 1px; font-family: var(--serif); color: var(--orange); }
 
 /* knife svg */
 .k-blade { fill: url(#steel); }
@@ -172,7 +182,7 @@ h1, h2, h3 { font-family: var(--serif); line-height: 1.2; margin: 0 0 .5em; }
 .about { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
 .about-text p { font-size: 17px; color: var(--muted); }
 .about-text p:first-of-type { color: var(--ink); font-size: 19px; }
-.about-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.about-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 .about-gallery img { border-radius: var(--radius); aspect-ratio: 1; object-fit: cover; width: 100%; }
 .about-gallery.empty {
   display: grid; grid-template-columns: 1fr; place-items: center; aspect-ratio: 1; border-radius: 50%;
@@ -257,4 +267,6 @@ h1, h2, h3 { font-family: var(--serif); line-height: 1.2; margin: 0 0 .5em; }
   .hero { padding: 40px 0 90px; }
   .section { padding: 64px 0; }
   .price-grid, .product-grid, .steps { grid-template-columns: 1fr; }
+  .care, .care ul { grid-template-columns: 1fr; }
+  .brand-kanji { display: none; }
 }
