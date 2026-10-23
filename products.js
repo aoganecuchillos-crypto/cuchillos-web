@@ -48,17 +48,6 @@ var PRODUCTS = [
     precio: 169990
   },
   {
-    id: "dv-bunka",
-    linea: "daovua",
-    nombre: "Bunka",
-    marca: "Dao Vua",
-    forma: "kiricleaver",
-    imagen: "img/bunka.jpg",
-    acero: "Acero 52100 al carbono · Forjado a mano",
-    descripcion: "Punta en ángulo y hoja ancha. Cómodo y preciso para el corte diario de verduras y proteínas.",
-    precio: null
-  },
-  {
     id: "dv-nakiri",
     linea: "daovua",
     nombre: "Nakiri",
