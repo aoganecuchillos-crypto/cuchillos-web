@@ -287,8 +287,8 @@
     form.direccion.required = regiones;
   });
 
-  function whatsappOrder(data) {
-    var txt = "Hola Aogane, quiero hacer este pedido:\n" +
+  function whatsappOrder(data, pagado) {
+    var txt = (pagado ? "Hola Aogane, acabo de pagar este pedido con Mercado Pago:\n" : "Hola Aogane, quiero hacer este pedido:\n") +
       lines().map(function (l) { return "• " + l.qty + " × " + l.p.marca + " " + l.p.nombre + " (" + money(l.p.precio * l.qty) + ")"; }).join("\n") +
       "\nTotal: " + money(total()) +
       "\nEntrega: " + (data.entrega === "regiones" ? "Envío a regiones (por pagar) – " + data.direccion : "Retiro en Metro Grecia") +
@@ -303,7 +303,7 @@
     pagoOnline = online;
     $("#payBtn").textContent = online ? "Pagar con Mercado Pago" : "Enviar pedido por WhatsApp";
     $("#payNote").textContent = online
-      ? "Pago seguro con tarjeta o transferencia a través de Mercado Pago."
+      ? "Pago seguro con tarjeta de crédito o débito a través de Mercado Pago."
       : "Te respondemos por WhatsApp para confirmar stock, entrega y forma de pago.";
     form.email.required = online;
     $("#emailLabel").hidden = !online;
@@ -342,7 +342,11 @@
       })
     })
       .then(function (r) { return r.json().then(function (j) { if (!r.ok) throw j; return j; }); })
-      .then(function (j) { window.location.href = j.url; })
+      .then(function (j) {
+        // Se guarda el detalle para avisar por WhatsApp al volver de Mercado Pago
+        try { localStorage.setItem(KEY + "-pedido", whatsappOrder(data, true)); } catch (e) {}
+        window.location.href = j.url;
+      })
       .catch(function () {
         // Si el pago online aún no está configurado, el pedido se envía por WhatsApp
         btn.disabled = false;
@@ -355,12 +359,19 @@
   var estado = new URLSearchParams(location.search).get("pago");
   if (estado) {
     var textos = {
-      ok: "¡Gracias! Recibimos tu pago. Te contactaremos por WhatsApp para coordinar la entrega.",
-      pendiente: "Tu pago quedó pendiente. Apenas se confirme te contactaremos.",
+      ok: "¡Gracias! Recibimos tu pago.\n\n¿Nos envías el detalle por WhatsApp para coordinar la entrega?",
+      pendiente: "Tu pago quedó pendiente. Apenas se confirme coordinamos la entrega.\n\n¿Nos envías el detalle por WhatsApp?",
       error: "El pago no se completó. Puedes intentarlo de nuevo o escribirnos por WhatsApp."
     };
+    var pedido = null;
+    try { pedido = localStorage.getItem(KEY + "-pedido"); } catch (e) {}
     if (estado === "ok") { cart = {}; save(); }
-    alert(textos[estado] || textos.error);
+    if ((estado === "ok" || estado === "pendiente") && pedido) {
+      try { localStorage.removeItem(KEY + "-pedido"); } catch (e) {}
+      if (confirm(textos[estado])) location.href = pedido;
+    } else {
+      alert(textos[estado] || textos.error);
+    }
     history.replaceState(null, "", location.pathname + "#tienda");
   }
 
