@@ -21,6 +21,12 @@ Afilado artesanal de cuchillos profesionales y tienda de cuchillos Dao Vua.
    - Con `null` → aparece **Consultar** por WhatsApp.
 3. Clic en **Commit changes**. Vercel publica el cambio solo en ~1 minuto.
 
+Otras opciones por producto (en `products.js`):
+- `etiqueta: "Nuevo"` (u "Oferta", "Últimas unidades") → aparece una etiqueta sobre la foto. Bórrala para quitarla.
+- `agotado: true` → muestra "Agotado" y el botón cambia a "Avísame" por WhatsApp.
+- `imagen: "img/nombre.jpg"` → foto del producto (si no hay, se muestra un dibujo).
+- `tipo` → en qué botón del filtro aparece (`chef`, `bunka`, `verduras`, `pescado`, `cleaver`).
+
 ## Activar el pago con Mercado Pago
 
 1. Entra a https://www.mercadopago.cl/developers/panel/app y crea una aplicación (tipo "Pagos online", "Checkout Pro").

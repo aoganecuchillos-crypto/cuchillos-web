@@ -63,9 +63,24 @@
     }).join("");
   }
 
+  var filtro = "todos";
+
+  function renderFilters() {
+    var chips = [{ id: "todos", nombre: "Todos" }].concat(TIPOS.filter(function (t) {
+      return PRODUCTS.some(function (p) { return p.tipo === t.id; });
+    }));
+    $("#filters").innerHTML = chips.map(function (t) {
+      return '<button type="button" class="chip" data-filter="' + esc(t.id) + '" aria-pressed="' + (t.id === filtro) + '">' + esc(t.nombre) + "</button>";
+    }).join("");
+    var tipo = TIPOS.filter(function (t) { return t.id === filtro; })[0];
+    $("#filterUso").textContent = tipo ? tipo.uso : "";
+  }
+
   function renderProducts() {
     $("#productGrid").innerHTML = LINEAS.map(function (l) {
-      var items = PRODUCTS.filter(function (p) { return p.linea === l.id; });
+      var items = PRODUCTS.filter(function (p) {
+        return p.linea === l.id && (filtro === "todos" || p.tipo === filtro);
+      });
       if (!items.length) return "";
       return (
         '<div class="linea">' +
@@ -76,31 +91,78 @@
     }).join("");
   }
 
-  function productCard(p) {
-    var i = PRODUCTS.indexOf(p);
-    var img = p.imagen
+  function productImg(p, prefix) {
+    return p.imagen
       ? '<img src="' + esc(p.imagen) + '" alt="Cuchillo ' + esc(p.marca + " " + p.nombre) + '" loading="lazy">'
-      : knifeSvg(p.forma, i);
-    var hasPrice = typeof p.precio === "number" && p.precio > 0;
-    var price = hasPrice
+      : knifeSvg(p.forma, prefix + PRODUCTS.indexOf(p));
+  }
+
+  function consultLink(p) {
+    return waLink("Hola Aogane, quiero consultar por el cuchillo " + p.marca + " " + p.nombre + ".");
+  }
+
+  function priceHtml(p) {
+    if (p.agotado) return '<span class="product-price consultar">Agotado</span>';
+    return find(p.id)
       ? '<span class="product-price">' + money(p.precio) + "</span>"
       : '<span class="product-price consultar">Consultar precio</span>';
-    var btn = hasPrice
+  }
+
+  function buyBtn(p) {
+    if (p.agotado) {
+      return '<a class="btn btn-ghost" target="_blank" rel="noopener" href="' + consultLink(p) + '">Avísame</a>';
+    }
+    return find(p.id)
       ? '<button class="btn btn-blue" data-add="' + esc(p.id) + '">Agregar</button>'
-      : '<a class="btn btn-ghost" target="_blank" rel="noopener" href="' +
-          waLink("Hola Aogane, quiero consultar por el cuchillo " + p.marca + " " + p.nombre + ".") + '">Consultar</a>';
+      : '<a class="btn btn-ghost" target="_blank" rel="noopener" href="' + consultLink(p) + '">Consultar</a>';
+  }
+
+  function productCard(p) {
+    var badge = p.agotado ? "Agotado" : p.etiqueta;
     return (
-      '<article class="product">' +
-        '<div class="product-img">' + img + "</div>" +
+      '<article class="product' + (p.agotado ? " is-agotado" : "") + '">' +
+        '<button type="button" class="product-img" data-detail="' + esc(p.id) + '" aria-label="Ver detalle de ' + esc(p.marca + " " + p.nombre) + '">' +
+          productImg(p, "c") +
+          (badge ? '<span class="badge">' + esc(badge) + "</span>" : "") +
+        "</button>" +
         '<div class="product-body">' +
           '<span class="product-brand">' + esc(p.marca) + "</span>" +
-          "<h3>" + esc(p.nombre) + "</h3>" +
+          '<h3><button type="button" class="link-btn" data-detail="' + esc(p.id) + '">' + esc(p.nombre) + "</button></h3>" +
           "<p>" + esc(p.descripcion) + "</p>" +
           '<p class="acero">' + esc(p.acero || "") + "</p>" +
-          '<div class="product-foot">' + price + btn + "</div>" +
+          '<div class="product-foot">' + priceHtml(p) + buyBtn(p) + "</div>" +
         "</div>" +
       "</article>"
     );
+  }
+
+  // ---------- Ficha ampliada ----------
+  var dialog = $("#productDialog");
+
+  function openDetail(id) {
+    var p = PRODUCTS.filter(function (x) { return x.id === id; })[0];
+    if (!p) return;
+    var tipo = TIPOS.filter(function (t) { return t.id === p.tipo; })[0];
+    $("#dialogBody").innerHTML =
+      '<div class="detail-img">' + productImg(p, "d") + "</div>" +
+      '<div class="detail-info">' +
+        '<span class="product-brand">' + esc(p.marca) + "</span>" +
+        "<h2>" + esc(p.nombre) + "</h2>" +
+        '<p class="detail-acero">' + esc(p.acero || "") + "</p>" +
+        "<p>" + esc(p.descripcion) + "</p>" +
+        (tipo ? '<p class="detail-uso"><strong>Uso:</strong> ' + esc(tipo.uso) + "</p>" : "") +
+        '<div class="detail-price">' + priceHtml(p) + "</div>" +
+        '<div class="detail-actions">' + buyBtn(p) +
+          '<a class="btn btn-ghost" target="_blank" rel="noopener" href="' +
+            waLink("Hola Aogane, me gustaría ver más fotos del " + p.marca + " " + p.nombre + ".") + '">Pedir más fotos</a>' +
+        "</div>" +
+        '<p class="detail-note">Retiro en Metro Grecia o envío a regiones por pagar.</p>' +
+      "</div>";
+    if (dialog.showModal) dialog.showModal(); else dialog.setAttribute("open", "");
+  }
+
+  function closeDetail() {
+    if (dialog.close) dialog.close(); else dialog.removeAttribute("open");
   }
 
   function renderGallery() {
@@ -151,7 +213,8 @@
   function save() { try { localStorage.setItem(KEY, JSON.stringify(cart)); } catch (e) {} }
   function find(id) {
     for (var i = 0; i < PRODUCTS.length; i++) {
-      if (PRODUCTS[i].id === id && typeof PRODUCTS[i].precio === "number") return PRODUCTS[i];
+      var p = PRODUCTS[i];
+      if (p.id === id && typeof p.precio === "number" && p.precio > 0 && !p.agotado) return p;
     }
     return null;
   }
@@ -202,15 +265,19 @@
   }
 
   document.addEventListener("click", function (e) {
-    var t = e.target.closest("[data-add],[data-inc],[data-dec]");
+    var t = e.target.closest("[data-add],[data-inc],[data-dec],[data-detail],[data-filter]");
     if (!t) return;
-    if (t.dataset.add) { setQty(t.dataset.add, (cart[t.dataset.add] || 0) + 1); openCart(); }
+    if (t.dataset.filter) { filtro = t.dataset.filter; renderFilters(); renderProducts(); return; }
+    if (t.dataset.detail) { openDetail(t.dataset.detail); return; }
+    if (t.dataset.add) { closeDetail(); setQty(t.dataset.add, (cart[t.dataset.add] || 0) + 1); openCart(); }
     if (t.dataset.inc) setQty(t.dataset.inc, (cart[t.dataset.inc] || 0) + 1);
     if (t.dataset.dec) setQty(t.dataset.dec, (cart[t.dataset.dec] || 0) - 1);
   });
   $("#cartOpen").addEventListener("click", openCart);
   $("#cartClose").addEventListener("click", closeCart);
   $("#backdrop").addEventListener("click", closeCart);
+  $("#dialogClose").addEventListener("click", closeDetail);
+  dialog.addEventListener("click", function (e) { if (e.target === dialog) closeDetail(); });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeCart(); });
 
   var form = $("#checkoutForm");
@@ -229,6 +296,25 @@
     return waLink(txt);
   }
 
+  // Si Mercado Pago aún no está conectado, el carrito envía el pedido por WhatsApp
+  var pagoOnline = false;
+
+  function setCheckoutMode(online) {
+    pagoOnline = online;
+    $("#payBtn").textContent = online ? "Pagar con Mercado Pago" : "Enviar pedido por WhatsApp";
+    $("#payNote").textContent = online
+      ? "Pago seguro con tarjeta o transferencia a través de Mercado Pago."
+      : "Te respondemos por WhatsApp para confirmar stock, entrega y forma de pago.";
+    form.email.required = online;
+    $("#emailLabel").hidden = !online;
+  }
+
+  setCheckoutMode(false);
+  fetch("/api/checkout")
+    .then(function (r) { return r.ok ? r.json() : { online: false }; })
+    .then(function (j) { setCheckoutMode(Boolean(j.online)); })
+    .catch(function () {});
+
   form.addEventListener("submit", function (e) {
     e.preventDefault();
     var data = {
@@ -239,6 +325,11 @@
       direccion: form.direccion.value.trim()
     };
     var btn = $("#payBtn"), msg = $("#formMsg");
+    if (!pagoOnline) {
+      window.open(whatsappOrder(data), "_blank", "noopener");
+      msg.textContent = "¡Listo! Se abrió WhatsApp con tu pedido. Solo falta enviarlo.";
+      return;
+    }
     btn.disabled = true;
     msg.textContent = "Conectando con Mercado Pago…";
 
@@ -283,6 +374,7 @@
   });
 
   renderAfilado();
+  renderFilters();
   renderProducts();
   renderGallery();
   renderContact();

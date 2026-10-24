@@ -3,18 +3,53 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Aogane · Afilado artesanal de cuchillos</title>
-  <meta name="description" content="Afilado artesanal de cuchillos profesionales en Santiago y venta de cuchillos japoneses Dao Vua en acero 52100.">
-  <meta property="og:title" content="Aogane · Afilado artesanal">
-  <meta property="og:description" content="Cuchillos en buen estado a la hora del servicio. Afilado a mano en Peñalolén, Santiago.">
-  <meta property="og:image" content="img/logo.png">
-  <link rel="icon" href="img/logo.png">
+  <title>Aogane · Afilado artesanal y cuchillos japoneses en Santiago</title>
+  <meta name="description" content="Afilado artesanal de cuchillos en Peñalolén, Santiago, desde $6.000. Venta de cuchillos Dao Vua en acero 52100 y Xinzuo damasco. Retiro en Metro Grecia y envíos a regiones.">
+  <link rel="canonical" href="https://cuchillos-web.vercel.app/">
+  <meta name="theme-color" content="#16223b">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_CL">
+  <meta property="og:site_name" content="Aogane">
+  <meta property="og:url" content="https://cuchillos-web.vercel.app/">
+  <meta property="og:title" content="Aogane · Afilado artesanal y cuchillos japoneses">
+  <meta property="og:description" content="Afilado a mano en Peñalolén, Santiago, y cuchillos Dao Vua y Xinzuo. Retiro en Metro Grecia y envíos a regiones.">
+  <meta property="og:image" content="https://cuchillos-web.vercel.app/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="img/favicon-64.png">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Store",
+    "name": "Aogane",
+    "alternateName": "Aogane 青金",
+    "description": "Afilado artesanal de cuchillos y venta de cuchillos de cocina profesionales.",
+    "url": "https://cuchillos-web.vercel.app/",
+    "image": "https://cuchillos-web.vercel.app/img/og.jpg",
+    "logo": "https://cuchillos-web.vercel.app/img/logo.png",
+    "telephone": "+56978473454",
+    "priceRange": "$6.000 - $279.990",
+    "address": { "@type": "PostalAddress", "addressLocality": "Peñalolén", "addressRegion": "Región Metropolitana", "addressCountry": "CL" },
+    "areaServed": "CL",
+    "sameAs": ["https://www.instagram.com/aogane.cuchillos/"]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@600;800&family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+  <div class="announce" role="note">
+    <div class="wrap announce-inner">
+      <span>Retiro en Metro Grecia</span>
+      <span>Envíos a regiones</span>
+      <span>Afilado artesanal a mano</span>
+    </div>
+  </div>
 
   <header class="topbar">
     <div class="wrap topbar-inner">
@@ -27,6 +62,7 @@
         <a href="#afilado">Afilado</a>
         <a href="#tienda">Tienda</a>
         <a href="#nosotros">Nosotros</a>
+        <a href="#preguntas">Preguntas</a>
         <a href="#contacto">Contacto</a>
       </nav>
       <button class="cart-btn" id="cartOpen" aria-label="Abrir carrito">
@@ -48,7 +84,7 @@
         <div class="hero-text">
           <p class="eyebrow">Afilado artesanal · Santiago</p>
           <h1>Filo de servicio para <em>cocinas profesionales</em></h1>
-          <p class="lead">Afilamos a mano en nuestro taller de Peñalolén para que tus cuchillos lleguen listos a cada servicio. También vendemos cuchillos japoneses forjados en acero 52100.</p>
+          <p class="lead">Afilamos a mano en nuestro taller de Peñalolén para que tus cuchillos lleguen listos a cada servicio. También vendemos cuchillos de estilo japonés Dao Vua y Xinzuo, elegidos por su acero.</p>
           <div class="hero-cta">
             <a class="btn btn-primary" id="heroWhatsapp" href="#" target="_blank" rel="noopener">Cotizar afilado por WhatsApp</a>
             <a class="btn btn-ghost" href="#tienda">Ver cuchillos</a>
@@ -75,6 +111,12 @@
           <p>Mantención con piedras al agua. Antes de cotizar evaluamos el estado del acero con una foto.</p>
         </header>
 
+        <ul class="perks">
+          <li><span aria-hidden="true">研</span><strong>Afilado artesanal</strong>Cada hoja se trabaja a mano en el taller.</li>
+          <li><span aria-hidden="true">見</span><strong>Evaluación previa</strong>Revisamos cada hoja con una foto antes de cotizar.</li>
+          <li><span aria-hidden="true">刃</span><strong>Para cocina profesional</strong>Conocemos el ritmo de un servicio.</li>
+        </ul>
+
         <div class="price-grid" id="priceGrid"></div>
 
         <ol class="steps">
@@ -98,6 +140,8 @@
           <h2>Tienda</h2>
           <p>Cuchillos seleccionados por su acero, su forma y su desempeño real en cocina.</p>
         </header>
+        <div class="filters" id="filters" role="group" aria-label="Filtrar por tipo de cuchillo"></div>
+        <p class="filter-uso" id="filterUso" aria-live="polite"></p>
         <div id="productGrid"></div>
         <div class="care">
           <div>
@@ -128,6 +172,40 @@
       </div>
     </section>
 
+    <!-- PREGUNTAS -->
+    <section class="section" id="preguntas">
+      <div class="wrap faq">
+        <header class="section-head">
+          <span class="kanji-tag">問</span>
+          <h2>Preguntas frecuentes</h2>
+        </header>
+        <details>
+          <summary>¿Cómo cotizo un afilado?</summary>
+          <p>Escríbenos por WhatsApp con una foto de tus cuchillos y cuántas piezas son. Evaluamos el estado del acero y te confirmamos el valor y la agenda. Como referencia: grandes $10.000, medianos $8.000 y pequeños $6.000 por pieza.</p>
+        </details>
+        <details>
+          <summary>¿Dónde entrego y retiro mis cuchillos?</summary>
+          <p>Nuestro taller está en Peñalolén. Coordinamos las entregas y retiros en persona en Metro Grecia (Línea 4), en el día y hora que te acomode.</p>
+        </details>
+        <details>
+          <summary>Estoy en regiones, ¿puedo comprar o afilar?</summary>
+          <p>Sí. Los cuchillos se envían por courier con envío por pagar. Para afilado, nos mandas tus cuchillos por courier y te los devolvemos igual; el envío y el retorno son de cargo del cliente.</p>
+        </details>
+        <details>
+          <summary>¿Cómo compro un cuchillo?</summary>
+          <p>Agrégalo al carrito, elige retiro o envío y completa tus datos. Te contactamos por WhatsApp para confirmar stock, entrega y forma de pago.</p>
+        </details>
+        <details>
+          <summary>¿Qué cuchillo me conviene?</summary>
+          <p>Si buscas uno solo para todo, un Gyuto o un Bunka. Para verduras, un Nakiri. Para pescado, Yanagiba, Sashimi o Deba. Si tienes dudas, escríbenos y te recomendamos según cómo cocinas.</p>
+        </details>
+        <details>
+          <summary>¿El acero al carbono se oxida?</summary>
+          <p>Puede oxidarse si queda mojado, por eso hay que lavarlo a mano y secarlo al tiro. Con el uso forma una pátina oscura que lo protege. Revisa los consejos en "Cuida tu acero".</p>
+        </details>
+      </div>
+    </section>
+
     <!-- CONTACTO -->
     <section class="section" id="contacto">
       <div class="wrap contact">
@@ -154,6 +232,12 @@
     </div>
   </footer>
 
+  <!-- FICHA DE PRODUCTO -->
+  <dialog class="product-dialog" id="productDialog" aria-label="Detalle del producto">
+    <button class="icon-btn dialog-close" id="dialogClose" aria-label="Cerrar">✕</button>
+    <div class="dialog-body" id="dialogBody"></div>
+  </dialog>
+
   <!-- CARRITO -->
   <div class="drawer-backdrop" id="backdrop" hidden></div>
   <aside class="drawer" id="drawer" aria-label="Carrito" aria-hidden="true">
@@ -173,10 +257,11 @@
         </fieldset>
         <label>Nombre <input name="nombre" required autocomplete="name"></label>
         <label>Teléfono <input name="telefono" type="tel" required autocomplete="tel"></label>
-        <label>Correo <input name="email" type="email" required autocomplete="email"></label>
+        <label id="emailLabel">Correo <input name="email" type="email" autocomplete="email"></label>
         <label class="only-regiones" hidden>Dirección y ciudad <input name="direccion" autocomplete="street-address"></label>
         <div class="cart-total"><span>Total</span><strong id="cartTotal">$0</strong></div>
-        <button class="btn btn-primary btn-block" type="submit" id="payBtn">Pagar con Mercado Pago</button>
+        <button class="btn btn-primary btn-block" type="submit" id="payBtn">Enviar pedido por WhatsApp</button>
+        <p class="pay-note" id="payNote"></p>
         <p class="form-msg" id="formMsg" role="status"></p>
       </form>
     </div>

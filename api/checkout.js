@@ -4,12 +4,17 @@
 const { PRODUCTS } = require("../products.js");
 
 module.exports = async function handler(req, res) {
+  const token = process.env.MP_ACCESS_TOKEN;
+
+  // La página consulta esto para saber si mostrar "Pagar" o "Pedir por WhatsApp"
+  if (req.method === "GET") {
+    return res.status(200).json({ online: Boolean(token) });
+  }
   if (req.method !== "POST") {
-    res.setHeader("Allow", "POST");
+    res.setHeader("Allow", "GET, POST");
     return res.status(405).json({ error: "Método no permitido" });
   }
 
-  const token = process.env.MP_ACCESS_TOKEN;
   if (!token) {
     return res.status(503).json({ error: "Pago online no configurado" });
   }
@@ -22,7 +27,7 @@ module.exports = async function handler(req, res) {
   for (const line of Array.isArray(body.items) ? body.items : []) {
     const p = PRODUCTS.find((x) => x.id === line.id);
     const qty = Math.floor(Number(line.qty));
-    if (!p || typeof p.precio !== "number" || !(qty >= 1 && qty <= 10)) {
+    if (!p || typeof p.precio !== "number" || p.agotado || !(qty >= 1 && qty <= 10)) {
       return res.status(400).json({ error: "Producto inválido" });
     }
     items.push({

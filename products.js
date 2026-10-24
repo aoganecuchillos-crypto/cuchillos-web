@@ -34,12 +34,25 @@ var LINEAS = [
   }
 ];
 
+// Tipos para el filtro de la tienda. Cada producto indica su "tipo".
+var TIPOS = [
+  { id: "chef", nombre: "Gyuto", uso: "El cuchillo de chef: sirve para casi todo." },
+  { id: "bunka", nombre: "Bunka", uso: "Punta en ángulo, cómodo para el día a día." },
+  { id: "verduras", nombre: "Nakiri", uso: "Hoja recta, ideal para verduras." },
+  { id: "pescado", nombre: "Pescado", uso: "Yanagiba, Deba y Sashimi: para filetear y cortar pescado." },
+  { id: "cleaver", nombre: "Cleaver", uso: "Hoja ancha para picar y trasladar ingredientes." }
+];
+
+// Opcional en cada producto:
+//   etiqueta: "Nuevo" / "Oferta" / "Últimas unidades"  → aparece una etiqueta sobre la foto
+//   agotado: true                                       → muestra "Agotado" y no se puede comprar
 var PRODUCTS = [
   // ---------- DAO VUA ----------
   {
     id: "dv-gyuto",
     linea: "daovua",
     nombre: "Gyuto",
+    tipo: "chef",
     marca: "Dao Vua",
     forma: "gyuto",
     imagen: "img/gyuto.jpg",
@@ -51,6 +64,7 @@ var PRODUCTS = [
     id: "dv-nakiri",
     linea: "daovua",
     nombre: "Nakiri",
+    tipo: "verduras",
     marca: "Dao Vua",
     forma: "nakiri",
     imagen: "img/nakiri.jpg",
@@ -62,6 +76,7 @@ var PRODUCTS = [
     id: "dv-yanagiba",
     linea: "daovua",
     nombre: "Yanagiba",
+    tipo: "pescado",
     marca: "Dao Vua",
     forma: "yanagiba",
     imagen: "img/yanagiba.jpg",
@@ -73,6 +88,7 @@ var PRODUCTS = [
     id: "dv-deba",
     linea: "daovua",
     nombre: "Deba",
+    tipo: "pescado",
     marca: "Dao Vua",
     forma: "deba",
     imagen: "img/deba.jpg",
@@ -84,6 +100,7 @@ var PRODUCTS = [
     id: "dv-cleaver",
     linea: "daovua",
     nombre: "Cleaver",
+    tipo: "cleaver",
     marca: "Dao Vua",
     forma: "cleaver",
     imagen: "img/cleaver.jpg",
@@ -95,6 +112,7 @@ var PRODUCTS = [
     id: "dv-kiri-cleaver",
     linea: "daovua",
     nombre: "Kiri-Cleaver",
+    tipo: "cleaver",
     marca: "Dao Vua",
     forma: "kiricleaver",
     imagen: "img/kiri-cleaver.jpg",
@@ -107,7 +125,9 @@ var PRODUCTS = [
   {
     id: "xz-pm80-bunka",
     linea: "xinzuo",
+    etiqueta: "Nuevo",
     nombre: "Bunka",
+    tipo: "bunka",
     marca: "Xinzuo · Serie PM80",
     forma: "kiricleaver",
     acero: "Damasco 67 capas · 60±1 HRC",
@@ -117,7 +137,9 @@ var PRODUCTS = [
   {
     id: "xz-f3s-deba",
     linea: "xinzuo",
+    etiqueta: "Nuevo",
     nombre: "Deba",
+    tipo: "pescado",
     marca: "Xinzuo · Serie F3S",
     forma: "deba",
     acero: "Acero 10Cr15CoMoV · 60±1 HRC",
@@ -127,7 +149,9 @@ var PRODUCTS = [
   {
     id: "xz-f3s-sashimi",
     linea: "xinzuo",
+    etiqueta: "Nuevo",
     nombre: "Sashimi",
+    tipo: "pescado",
     marca: "Xinzuo · Serie F3S",
     forma: "yanagiba",
     acero: "Acero 10Cr15CoMoV · 60±1 HRC",
@@ -137,7 +161,9 @@ var PRODUCTS = [
   {
     id: "xz-f3-sakimaru",
     linea: "xinzuo",
+    etiqueta: "Nuevo",
     nombre: "Sakimaru",
+    tipo: "pescado",
     marca: "Xinzuo · Serie F3",
     forma: "yanagiba",
     acero: "Damasco 110 capas · 60±1 HRC",
@@ -147,7 +173,9 @@ var PRODUCTS = [
   {
     id: "xz-pm8b-nakiri",
     linea: "xinzuo",
+    etiqueta: "Nuevo",
     nombre: "Nakiri",
+    tipo: "verduras",
     marca: "Xinzuo · Serie PM8B",
     forma: "nakiri",
     acero: "Núcleo japonés Aogami #2 · 62-64 HRC",
@@ -157,7 +185,9 @@ var PRODUCTS = [
   {
     id: "xz-pm8b-bunka",
     linea: "xinzuo",
+    etiqueta: "Nuevo",
     nombre: "Bunka",
+    tipo: "bunka",
     marca: "Xinzuo · Serie PM8B",
     forma: "kiricleaver",
     acero: "Núcleo japonés Aogami #2 · 62-64 HRC",
@@ -167,7 +197,9 @@ var PRODUCTS = [
   {
     id: "xz-x08c-nakiri",
     linea: "xinzuo",
+    etiqueta: "Nuevo",
     nombre: "Nakiri",
+    tipo: "verduras",
     marca: "Xinzuo · Serie X08C",
     forma: "nakiri",
     acero: "Damasco 53 capas con cobre · 59-61 HRC",
@@ -177,7 +209,9 @@ var PRODUCTS = [
   {
     id: "xz-x08c-bunka",
     linea: "xinzuo",
+    etiqueta: "Nuevo",
     nombre: "Bunka",
+    tipo: "bunka",
     marca: "Xinzuo · Serie X08C",
     forma: "kiricleaver",
     acero: "Damasco 53 capas con cobre · 59-61 HRC",
