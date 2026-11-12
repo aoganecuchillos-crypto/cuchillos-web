@@ -25,7 +25,9 @@ var LINEAS = [
   {
     id: "daovua",
     titulo: "Dao Vua · Forjado artesanal",
-    texto: "Forjados a mano en Vietnam en acero al carbono 52100: retención de filo y resistencia al desgaste muy superiores al estándar."
+    texto: "Forjados a mano en Vietnam en acero al carbono 52100. Filo muy agudo y duradero, fácil de reafilar. Todos incluyen su saya de madera.",
+    // Se muestra en la ficha de cada cuchillo de esta línea
+    detalle: "El 52100 es un acero alto en carbono y cromo, el mismo que se usa en rodamientos industriales por su resistencia. Su grano muy fino permite un filo agudísimo que dura más entre afilados y resiste el desgaste del uso diario. Se reafila con facilidad en piedra y, con el tiempo, desarrolla una pátina que lo protege y le da carácter único a cada hoja."
   },
   {
     id: "xinzuo",
@@ -47,6 +49,8 @@ var TIPOS = [
 //   etiqueta: "Nuevo" / "Oferta" / "Últimas unidades"  → aparece una etiqueta sobre la foto
 //   agotado: true                                       → muestra "Agotado" y no se puede comprar
 //   medidas: "Hoja 25 cm · Mango 14 cm"                 → se muestra bajo el acero
+//   imagenes: ["img/a.jpg", "img/b.jpg"]               → varias fotos; la primera es la principal
+//   incluye: "Saya (funda) de madera"                   → qué viene con el cuchillo
 //   stock: 2                                           → muestra "Quedan 2" y no deja comprar más.
 //                                                         Con stock: 0 aparece como agotado. Sin stock = sin límite.
 var PRODUCTS = [
@@ -58,7 +62,8 @@ var PRODUCTS = [
     tipo: "chef",
     marca: "Dao Vua",
     forma: "gyuto",
-    imagen: "img/gyuto.jpg",
+    imagenes: ["img/daovua/gyuto-1.jpg", "img/daovua/gyuto-2.jpg", "img/daovua/gyuto-3.jpg"],
+    incluye: "Saya (funda) de madera",
     acero: "Acero 52100 al carbono · Forjado a mano",
     medidas: "Hoja 25 cm · Mango 14 cm",
     descripcion: "El cuchillo de chef japonés. Versátil para cortar proteínas, verduras y hierbas.",
@@ -72,7 +77,8 @@ var PRODUCTS = [
     tipo: "verduras",
     marca: "Dao Vua",
     forma: "nakiri",
-    imagen: "img/nakiri.jpg",
+    imagenes: ["img/daovua/nakiri-1.jpg", "img/daovua/nakiri-2.jpg", "img/daovua/nakiri-3.jpg"],
+    incluye: "Saya (funda) de madera",
     acero: "Acero 52100 al carbono · Forjado a mano",
     medidas: "Hoja 18 cm · Mango 13 cm",
     descripcion: "Hoja recta y rectangular, ideal para verduras y cortes finos y parejos.",
@@ -86,7 +92,8 @@ var PRODUCTS = [
     tipo: "pescado",
     marca: "Dao Vua",
     forma: "yanagiba",
-    imagen: "img/yanagiba.jpg",
+    imagenes: ["img/daovua/yanagiba-1.jpg", "img/daovua/yanagiba-2.jpg", "img/daovua/yanagiba-3.jpg"],
+    incluye: "Saya (funda) de madera",
     acero: "Acero 52100 al carbono · Forjado a mano",
     medidas: "Hoja 28 cm · Mango 14,5 cm",
     descripcion: "Hoja larga y delgada para cortar pescado crudo en un solo movimiento.",
@@ -100,7 +107,8 @@ var PRODUCTS = [
     tipo: "pescado",
     marca: "Dao Vua",
     forma: "deba",
-    imagen: "img/deba.jpg",
+    imagenes: ["img/daovua/deba-1.jpg", "img/daovua/deba-2.jpg", "img/daovua/deba-3.jpg"],
+    incluye: "Saya (funda) de madera",
     acero: "Acero 52100 al carbono · Forjado a mano",
     medidas: "Hoja 20 cm · Mango 13 cm",
     descripcion: "Hoja gruesa y pesada para despiezar pescado y trabajar huesos pequeños.",
@@ -114,7 +122,8 @@ var PRODUCTS = [
     tipo: "cleaver",
     marca: "Dao Vua",
     forma: "cleaver",
-    imagen: "img/cleaver.jpg",
+    imagenes: ["img/daovua/cleaver-1.jpg", "img/daovua/cleaver-2.jpg", "img/daovua/cleaver-3.jpg", "img/daovua/cleaver-4.jpg"],
+    incluye: "Saya (funda) de madera",
     acero: "Acero 52100 al carbono · Forjado a mano",
     medidas: "Hoja 20 cm · Mango 14 cm",
     descripcion: "Hoja ancha de estilo chino. Pica, aplasta y traslada ingredientes.",
@@ -128,7 +137,8 @@ var PRODUCTS = [
     tipo: "cleaver",
     marca: "Dao Vua",
     forma: "kiricleaver",
-    imagen: "img/kiri-cleaver.jpg",
+    imagenes: ["img/daovua/kiri-cleaver-1.jpg", "img/daovua/kiri-cleaver-2.jpg", "img/daovua/kiri-cleaver-3.jpg", "img/daovua/kiri-cleaver-4.jpg"],
+    incluye: "Saya (funda) de madera",
     acero: "Acero 52100 al carbono · Forjado a mano",
     medidas: "Hoja 20 cm · Mango 13 cm",
     descripcion: "Cleaver con punta en ángulo tipo kiritsuke. Más control en cortes de precisión.",
@@ -246,7 +256,7 @@ var GALERIA = [
   { src: "img/galeria-6.jpg", alt: "Dos cuchillos pequeños con funda de madera" }
 ];
 
-// Para mostrar una foto real de un producto, agrega  imagen: "img/gyuto.jpg"  a ese producto.
+// Para mostrar fotos reales de un producto, agrega  imagenes: ["img/gyuto-1.jpg", "img/gyuto-2.jpg"]  a ese producto.
 
 // Permite que el servidor de pagos (api/checkout.js) lea este mismo catálogo
 if (typeof module !== "undefined") {

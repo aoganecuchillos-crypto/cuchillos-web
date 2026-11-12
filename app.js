@@ -100,10 +100,30 @@
     return '<p class="stock">' + (p.stock === 1 ? "Última unidad" : "Quedan " + p.stock) + "</p>";
   }
 
+  function photos(p) {
+    if (p.imagenes && p.imagenes.length) return p.imagenes;
+    return p.imagen ? [p.imagen] : [];
+  }
+
   function productImg(p, prefix) {
-    return p.imagen
-      ? '<img src="' + esc(p.imagen) + '" alt="Cuchillo ' + esc(p.marca + " " + p.nombre) + '" loading="lazy">'
+    var fotos = photos(p);
+    return fotos.length
+      ? '<img src="' + esc(fotos[0]) + '" alt="Cuchillo ' + esc(p.marca + " " + p.nombre) + '" loading="lazy">'
       : knifeSvg(p.forma, prefix + PRODUCTS.indexOf(p));
+  }
+
+  function detailGallery(p) {
+    var fotos = photos(p);
+    if (fotos.length < 2) return '<div class="detail-img">' + productImg(p, "d") + "</div>";
+    return (
+      '<div class="detail-img">' +
+        '<img id="detailMain" src="' + esc(fotos[0]) + '" alt="Cuchillo ' + esc(p.marca + " " + p.nombre) + ', foto 1">' +
+        '<div class="thumbs">' + fotos.map(function (f, i) {
+          return '<button type="button" class="thumb" data-photo="' + esc(f) + '" aria-label="Ver foto ' + (i + 1) + '"' +
+            (i === 0 ? ' aria-current="true"' : "") + '><img src="' + esc(f) + '" alt="" loading="lazy"></button>';
+        }).join("") + "</div>" +
+      "</div>"
+    );
   }
 
   function consultLink(p) {
@@ -154,8 +174,9 @@
     var p = PRODUCTS.filter(function (x) { return x.id === id; })[0];
     if (!p) return;
     var tipo = TIPOS.filter(function (t) { return t.id === p.tipo; })[0];
+    var linea = LINEAS.filter(function (l) { return l.id === p.linea; })[0];
     $("#dialogBody").innerHTML =
-      '<div class="detail-img">' + productImg(p, "d") + "</div>" +
+      detailGallery(p) +
       '<div class="detail-info">' +
         '<span class="product-brand">' + esc(p.marca) + "</span>" +
         "<h2>" + esc(p.nombre) + "</h2>" +
@@ -163,6 +184,8 @@
         (p.medidas ? '<p class="detail-medidas">' + esc(p.medidas) + "</p>" : "") +
         "<p>" + esc(p.descripcion) + "</p>" +
         (tipo ? '<p class="detail-uso"><strong>Uso:</strong> ' + esc(tipo.uso) + "</p>" : "") +
+        (p.incluye ? '<p class="detail-uso"><strong>Incluye:</strong> ' + esc(p.incluye) + "</p>" : "") +
+        (linea && linea.detalle ? '<p class="detail-steel">' + esc(linea.detalle) + "</p>" : "") +
         '<div class="detail-price">' + priceHtml(p) + "</div>" +
         stockHtml(p) +
         '<div class="detail-actions">' + buyBtn(p) +
@@ -283,8 +306,14 @@
   }
 
   document.addEventListener("click", function (e) {
-    var t = e.target.closest("[data-add],[data-inc],[data-dec],[data-detail],[data-filter]");
+    var t = e.target.closest("[data-add],[data-inc],[data-dec],[data-detail],[data-filter],[data-photo]");
     if (!t) return;
+    if (t.dataset.photo) {
+      $("#detailMain").src = t.dataset.photo;
+      document.querySelectorAll(".thumb").forEach(function (b) { b.removeAttribute("aria-current"); });
+      t.setAttribute("aria-current", "true");
+      return;
+    }
     if (t.dataset.filter) { filtro = t.dataset.filter; renderFilters(); renderProducts(); return; }
     if (t.dataset.detail) { openDetail(t.dataset.detail); return; }
     if (t.dataset.add) { closeDetail(); setQty(t.dataset.add, (cart[t.dataset.add] || 0) + 1); openCart(); }

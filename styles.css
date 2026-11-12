@@ -270,6 +270,7 @@ h1, h2, h3 { font-family: var(--serif); line-height: 1.2; margin: 0 0 .5em; }
 .product-dialog {
   border: 0; padding: 0; border-radius: var(--radius); background: var(--paper); color: var(--ink);
   width: min(880px, calc(100% - 32px)); max-height: calc(100% - 32px); box-shadow: 0 20px 60px rgba(0,0,0,.3);
+  overflow: auto;
 }
 .product-dialog::backdrop { background: rgba(22, 34, 59, .55); }
 .dialog-close { position: absolute; top: 10px; right: 10px; z-index: 2; background: var(--card); }
@@ -277,6 +278,16 @@ h1, h2, h3 { font-family: var(--serif); line-height: 1.2; margin: 0 0 .5em; }
 .detail-img { background: linear-gradient(160deg, #fbf8f1, #efe8db); display: grid; place-items: center; min-height: 320px; }
 .detail-img img { width: 100%; height: 100%; max-height: 80vh; object-fit: cover; }
 .detail-img svg { width: 90%; }
+.detail-img:has(.thumbs) { position: relative; display: block; background: #e7e4df; padding-bottom: 72px; }
+#detailMain { object-fit: contain; height: calc(min(80vh, 100%) - 0px); max-height: 70vh; display: block; margin: 0 auto; }
+.thumbs { position: absolute; left: 0; right: 0; bottom: 10px; display: flex; justify-content: center; gap: 8px; }
+.thumb {
+  width: 52px; height: 52px; padding: 0; border-radius: 8px; overflow: hidden; cursor: pointer;
+  border: 2px solid rgba(255,255,255,.8); background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,.25); opacity: .75;
+}
+.thumb[aria-current="true"] { border-color: var(--orange); opacity: 1; }
+.thumb img { width: 100%; height: 100%; object-fit: cover; }
+.detail-steel { font-size: 14px; border-left: 3px solid var(--blue); padding-left: 12px; }
 .detail-info { padding: 32px 28px; display: flex; flex-direction: column; gap: 10px; }
 .detail-info h2 { font-size: 34px; margin: 0; }
 .detail-info p { margin: 0; color: var(--muted); }
@@ -350,7 +361,8 @@ h1, h2, h3 { font-family: var(--serif); line-height: 1.2; margin: 0 0 .5em; }
   .linea-head h3 { font-size: 23px; }
   .perks { grid-template-columns: 1fr; }
   .dialog-body { grid-template-columns: 1fr; }
-  .detail-img { min-height: 0; max-height: 45vh; overflow: hidden; }
+  .detail-img { min-height: 0; max-height: 52vh; overflow: hidden; }
+  #detailMain { max-height: calc(52vh - 72px); }
   .detail-info { padding: 20px; }
   .detail-info h2 { font-size: 28px; }
   .announce { font-size: 12px; }
