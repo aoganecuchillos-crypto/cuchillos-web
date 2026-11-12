@@ -178,7 +178,7 @@
     $("#dialogBody").innerHTML =
       detailGallery(p) +
       '<div class="detail-info">' +
-        '<span class="product-brand">' + esc(p.marca) + "</span>" +
+        '<span class="product-brand">' + esc(p.marca) + (p.serie ? ' · ' + esc(p.serie) : "") + "</span>" +
         "<h2>" + esc(p.nombre) + "</h2>" +
         '<p class="detail-acero">' + esc(p.acero || "") + "</p>" +
         (p.medidas ? '<p class="detail-medidas">' + esc(p.medidas) + "</p>" : "") +
