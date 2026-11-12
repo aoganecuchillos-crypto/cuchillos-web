@@ -139,6 +139,7 @@
           '<h3><button type="button" class="link-btn" data-detail="' + esc(p.id) + '">' + esc(p.nombre) + "</button></h3>" +
           "<p>" + esc(p.descripcion) + "</p>" +
           '<p class="acero">' + esc(p.acero || "") + "</p>" +
+          (p.medidas ? '<p class="medidas">' + esc(p.medidas) + "</p>" : "") +
           stockHtml(p) +
           '<div class="product-foot">' + priceHtml(p) + buyBtn(p) + "</div>" +
         "</div>" +
@@ -159,6 +160,7 @@
         '<span class="product-brand">' + esc(p.marca) + "</span>" +
         "<h2>" + esc(p.nombre) + "</h2>" +
         '<p class="detail-acero">' + esc(p.acero || "") + "</p>" +
+        (p.medidas ? '<p class="detail-medidas">' + esc(p.medidas) + "</p>" : "") +
         "<p>" + esc(p.descripcion) + "</p>" +
         (tipo ? '<p class="detail-uso"><strong>Uso:</strong> ' + esc(tipo.uso) + "</p>" : "") +
         '<div class="detail-price">' + priceHtml(p) + "</div>" +

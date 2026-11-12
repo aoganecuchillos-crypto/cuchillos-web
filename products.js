@@ -46,7 +46,8 @@ var TIPOS = [
 // Opcional en cada producto:
 //   etiqueta: "Nuevo" / "Oferta" / "Últimas unidades"  → aparece una etiqueta sobre la foto
 //   agotado: true                                       → muestra "Agotado" y no se puede comprar
-//   stock: 2                                            → muestra "Quedan 2" y no deja comprar más.
+//   medidas: "Hoja 25 cm · Mango 14 cm"                 → se muestra bajo el acero
+//   stock: 2                                           → muestra "Quedan 2" y no deja comprar más.
 //                                                         Con stock: 0 aparece como agotado. Sin stock = sin límite.
 var PRODUCTS = [
   // ---------- DAO VUA ----------
@@ -59,6 +60,7 @@ var PRODUCTS = [
     forma: "gyuto",
     imagen: "img/gyuto.jpg",
     acero: "Acero 52100 al carbono · Forjado a mano",
+    medidas: "Hoja 25 cm · Mango 14 cm",
     descripcion: "El cuchillo de chef japonés. Versátil para cortar proteínas, verduras y hierbas.",
     stock: 2,
     precio: 169990
@@ -72,6 +74,7 @@ var PRODUCTS = [
     forma: "nakiri",
     imagen: "img/nakiri.jpg",
     acero: "Acero 52100 al carbono · Forjado a mano",
+    medidas: "Hoja 18 cm · Mango 13 cm",
     descripcion: "Hoja recta y rectangular, ideal para verduras y cortes finos y parejos.",
     stock: 1,
     precio: 159990
@@ -85,6 +88,7 @@ var PRODUCTS = [
     forma: "yanagiba",
     imagen: "img/yanagiba.jpg",
     acero: "Acero 52100 al carbono · Forjado a mano",
+    medidas: "Hoja 28 cm · Mango 14,5 cm",
     descripcion: "Hoja larga y delgada para cortar pescado crudo en un solo movimiento.",
     stock: 2,
     precio: 169990
@@ -98,6 +102,7 @@ var PRODUCTS = [
     forma: "deba",
     imagen: "img/deba.jpg",
     acero: "Acero 52100 al carbono · Forjado a mano",
+    medidas: "Hoja 20 cm · Mango 13 cm",
     descripcion: "Hoja gruesa y pesada para despiezar pescado y trabajar huesos pequeños.",
     stock: 3,
     precio: 159990
@@ -111,6 +116,7 @@ var PRODUCTS = [
     forma: "cleaver",
     imagen: "img/cleaver.jpg",
     acero: "Acero 52100 al carbono · Forjado a mano",
+    medidas: "Hoja 20 cm · Mango 14 cm",
     descripcion: "Hoja ancha de estilo chino. Pica, aplasta y traslada ingredientes.",
     stock: 1,
     precio: 169990
@@ -124,6 +130,7 @@ var PRODUCTS = [
     forma: "kiricleaver",
     imagen: "img/kiri-cleaver.jpg",
     acero: "Acero 52100 al carbono · Forjado a mano",
+    medidas: "Hoja 20 cm · Mango 13 cm",
     descripcion: "Cleaver con punta en ángulo tipo kiritsuke. Más control en cortes de precisión.",
     stock: 2,
     precio: 169990

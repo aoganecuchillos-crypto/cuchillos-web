@@ -169,6 +169,8 @@ h1, h2, h3 { font-family: var(--serif); line-height: 1.2; margin: 0 0 .5em; }
 }
 .is-agotado .badge { background: var(--muted); }
 .is-agotado .product-img img, .is-agotado .product-img svg { opacity: .55; }
+.product .medidas { font-size: 13px; color: var(--blue-deep); font-weight: 500; margin: -12px 0 18px; }
+.detail-medidas { color: var(--blue-deep) !important; font-weight: 500; }
 .stock { color: var(--orange-deep) !important; font-size: 13px !important; font-weight: 700; margin: -10px 0 14px !important; }
 .detail-info .stock { margin: 0 !important; }
 .link-btn { background: none; border: 0; padding: 0; font: inherit; color: inherit; cursor: pointer; text-align: left; }
