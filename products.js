@@ -231,6 +231,8 @@ var PRODUCTS = [
     marca: "Xinzuo",
     serie: "Serie PM8B",
     forma: "kiricleaver",
+    imagenes: ["img/xinzuo/bunka-aogami-1.jpg", "img/xinzuo/bunka-aogami-2.jpg", "img/xinzuo/bunka-aogami-3.jpg", "img/xinzuo/bunka-aogami-4.jpg"],
+    incluye: "Caja de madera de regalo",
     acero: "Núcleo japonés Aogami #2 · 62-64 HRC",
     medidas: "Hoja 22,5 cm · Mango 14 cm",
     descripcion: "Bunka con núcleo de acero azul japonés, para quien busca el máximo filo.",
