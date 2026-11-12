@@ -148,19 +148,6 @@ var PRODUCTS = [
 
   // ---------- XINZUO ----------
   {
-    id: "xz-pm80-bunka",
-    linea: "xinzuo",
-    etiqueta: "Nuevo",
-    nombre: "Bunka Damasco",
-    tipo: "bunka",
-    marca: "Xinzuo",
-    serie: "Serie PM80",
-    forma: "kiricleaver",
-    acero: "Damasco 67 capas · 60±1 HRC",
-    descripcion: "Punta en ángulo y hoja ancha para el corte diario, con el dibujo del damasco de 67 capas.",
-    precio: 159990
-  },
-  {
     id: "xz-f3s-deba",
     linea: "xinzuo",
     etiqueta: "Nuevo",
@@ -174,6 +161,7 @@ var PRODUCTS = [
     acero: "Acero 10Cr15CoMoV · 60±1 HRC",
     medidas: "Hoja 19,5 cm · Mango 14 cm",
     descripcion: "Hoja robusta para despiezar pescado. Acero inoxidable premium con muy buena retención de filo.",
+    stock: 1,
     precio: 224990
   },
   {
@@ -190,6 +178,7 @@ var PRODUCTS = [
     acero: "Acero 10Cr15CoMoV · 60±1 HRC",
     medidas: "Hoja 28 cm · Mango 14,5 cm",
     descripcion: "Hoja larga para cortes limpios de pescado crudo, en acero inoxidable premium.",
+    stock: 2,
     precio: 224990
   },
   {
@@ -206,21 +195,8 @@ var PRODUCTS = [
     acero: "Damasco 110 capas · 60±1 HRC",
     medidas: "Hoja 28 cm · Mango 14,5 cm",
     descripcion: "Cuchillo de sashimi con punta redondeada. Una pieza de colección en damasco de 110 capas.",
+    stock: 1,
     precio: 279990
-  },
-  {
-    id: "xz-pm8b-nakiri",
-    linea: "xinzuo",
-    etiqueta: "Nuevo",
-    nombre: "Nakiri Aogami",
-    tipo: "verduras",
-    marca: "Xinzuo",
-    serie: "Serie PM8B",
-    forma: "nakiri",
-    acero: "Núcleo japonés Aogami #2 · 62-64 HRC",
-    medidas: "Hoja 20 cm · Mango 14 cm",
-    descripcion: "Hoja recta para verduras con núcleo de acero azul japonés: filo muy fino y duradero.",
-    precio: 234990
   },
   {
     id: "xz-pm8b-bunka",
@@ -236,6 +212,7 @@ var PRODUCTS = [
     acero: "Núcleo japonés Aogami #2 · 62-64 HRC",
     medidas: "Hoja 22,5 cm · Mango 14 cm",
     descripcion: "Bunka con núcleo de acero azul japonés, para quien busca el máximo filo.",
+    stock: 2,
     precio: 249990
   },
   {
@@ -252,6 +229,7 @@ var PRODUCTS = [
     acero: "Damasco 53 capas con cobre · 59-61 HRC",
     medidas: "Hoja 20 cm · Mango 12,5 cm",
     descripcion: "Nakiri en damasco con capas de cobre: una hoja tan funcional como llamativa.",
+    stock: 1,
     precio: 254990
   },
   {
@@ -268,6 +246,7 @@ var PRODUCTS = [
     acero: "Damasco 53 capas con cobre · 59-61 HRC",
     medidas: "Hoja 22,5 cm · Mango 12,5 cm",
     descripcion: "Bunka en damasco con capas de cobre, de terminación premium.",
+    stock: 1,
     precio: 259990
   }
 ];
