@@ -91,6 +91,15 @@
     }).join("");
   }
 
+  function isAgotado(p) { return p.agotado || p.stock === 0; }
+
+  function maxQty(p) { return typeof p.stock === "number" ? Math.min(p.stock, 10) : 10; }
+
+  function stockHtml(p) {
+    if (isAgotado(p) || typeof p.stock !== "number" || p.stock > 3) return "";
+    return '<p class="stock">' + (p.stock === 1 ? "Última unidad" : "Quedan " + p.stock) + "</p>";
+  }
+
   function productImg(p, prefix) {
     return p.imagen
       ? '<img src="' + esc(p.imagen) + '" alt="Cuchillo ' + esc(p.marca + " " + p.nombre) + '" loading="lazy">'
@@ -102,14 +111,14 @@
   }
 
   function priceHtml(p) {
-    if (p.agotado) return '<span class="product-price consultar">Agotado</span>';
+    if (isAgotado(p)) return '<span class="product-price consultar">Agotado</span>';
     return find(p.id)
       ? '<span class="product-price">' + money(p.precio) + "</span>"
       : '<span class="product-price consultar">Consultar precio</span>';
   }
 
   function buyBtn(p) {
-    if (p.agotado) {
+    if (isAgotado(p)) {
       return '<a class="btn btn-ghost" target="_blank" rel="noopener" href="' + consultLink(p) + '">Avísame</a>';
     }
     return find(p.id)
@@ -118,9 +127,9 @@
   }
 
   function productCard(p) {
-    var badge = p.agotado ? "Agotado" : p.etiqueta;
+    var badge = isAgotado(p) ? "Agotado" : p.etiqueta;
     return (
-      '<article class="product' + (p.agotado ? " is-agotado" : "") + '">' +
+      '<article class="product' + (isAgotado(p) ? " is-agotado" : "") + '">' +
         '<button type="button" class="product-img" data-detail="' + esc(p.id) + '" aria-label="Ver detalle de ' + esc(p.marca + " " + p.nombre) + '">' +
           productImg(p, "c") +
           (badge ? '<span class="badge">' + esc(badge) + "</span>" : "") +
@@ -130,6 +139,7 @@
           '<h3><button type="button" class="link-btn" data-detail="' + esc(p.id) + '">' + esc(p.nombre) + "</button></h3>" +
           "<p>" + esc(p.descripcion) + "</p>" +
           '<p class="acero">' + esc(p.acero || "") + "</p>" +
+          stockHtml(p) +
           '<div class="product-foot">' + priceHtml(p) + buyBtn(p) + "</div>" +
         "</div>" +
       "</article>"
@@ -152,6 +162,7 @@
         "<p>" + esc(p.descripcion) + "</p>" +
         (tipo ? '<p class="detail-uso"><strong>Uso:</strong> ' + esc(tipo.uso) + "</p>" : "") +
         '<div class="detail-price">' + priceHtml(p) + "</div>" +
+        stockHtml(p) +
         '<div class="detail-actions">' + buyBtn(p) +
           '<a class="btn btn-ghost" target="_blank" rel="noopener" href="' +
             waLink("Hola Aogane, me gustaría ver más fotos del " + p.marca + " " + p.nombre + ".") + '">Pedir más fotos</a>' +
@@ -206,7 +217,10 @@
     try {
       var raw = JSON.parse(localStorage.getItem(KEY)) || {};
       // descarta productos que ya no existen o no tienen precio
-      Object.keys(raw).forEach(function (id) { if (!find(id)) delete raw[id]; });
+      Object.keys(raw).forEach(function (id) {
+        var p = find(id);
+        if (!p) delete raw[id]; else raw[id] = Math.min(raw[id], maxQty(p));
+      });
       return raw;
     } catch (e) { return {}; }
   }
@@ -214,7 +228,7 @@
   function find(id) {
     for (var i = 0; i < PRODUCTS.length; i++) {
       var p = PRODUCTS[i];
-      if (p.id === id && typeof p.precio === "number" && p.precio > 0 && !p.agotado) return p;
+      if (p.id === id && typeof p.precio === "number" && p.precio > 0 && !isAgotado(p)) return p;
     }
     return null;
   }
@@ -240,7 +254,8 @@
           '<span class="qty">' +
             '<button type="button" data-dec="' + esc(l.p.id) + '" aria-label="Quitar uno">−</button>' +
             "<span>" + l.qty + "</span>" +
-            '<button type="button" data-inc="' + esc(l.p.id) + '" aria-label="Agregar uno">+</button>' +
+            '<button type="button" data-inc="' + esc(l.p.id) + '" aria-label="Agregar uno"' +
+              (l.qty >= maxQty(l.p) ? ' disabled title="No hay más stock"' : "") + ">+</button>" +
           "</span>" +
         "</li>"
       );
@@ -249,7 +264,8 @@
   }
 
   function setQty(id, q) {
-    if (q <= 0) delete cart[id]; else cart[id] = Math.min(q, 10);
+    var p = find(id);
+    if (q <= 0 || !p) delete cart[id]; else cart[id] = Math.min(q, maxQty(p));
     save(); renderCart();
   }
 

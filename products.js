@@ -46,6 +46,8 @@ var TIPOS = [
 // Opcional en cada producto:
 //   etiqueta: "Nuevo" / "Oferta" / "Últimas unidades"  → aparece una etiqueta sobre la foto
 //   agotado: true                                       → muestra "Agotado" y no se puede comprar
+//   stock: 2                                            → muestra "Quedan 2" y no deja comprar más.
+//                                                         Con stock: 0 aparece como agotado. Sin stock = sin límite.
 var PRODUCTS = [
   // ---------- DAO VUA ----------
   {
@@ -58,6 +60,7 @@ var PRODUCTS = [
     imagen: "img/gyuto.jpg",
     acero: "Acero 52100 al carbono · Forjado a mano",
     descripcion: "El cuchillo de chef japonés. Versátil para cortar proteínas, verduras y hierbas.",
+    stock: 2,
     precio: 169990
   },
   {
@@ -70,6 +73,7 @@ var PRODUCTS = [
     imagen: "img/nakiri.jpg",
     acero: "Acero 52100 al carbono · Forjado a mano",
     descripcion: "Hoja recta y rectangular, ideal para verduras y cortes finos y parejos.",
+    stock: 1,
     precio: 159990
   },
   {
@@ -82,6 +86,7 @@ var PRODUCTS = [
     imagen: "img/yanagiba.jpg",
     acero: "Acero 52100 al carbono · Forjado a mano",
     descripcion: "Hoja larga y delgada para cortar pescado crudo en un solo movimiento.",
+    stock: 2,
     precio: 169990
   },
   {
@@ -94,6 +99,7 @@ var PRODUCTS = [
     imagen: "img/deba.jpg",
     acero: "Acero 52100 al carbono · Forjado a mano",
     descripcion: "Hoja gruesa y pesada para despiezar pescado y trabajar huesos pequeños.",
+    stock: 3,
     precio: 159990
   },
   {
@@ -106,6 +112,7 @@ var PRODUCTS = [
     imagen: "img/cleaver.jpg",
     acero: "Acero 52100 al carbono · Forjado a mano",
     descripcion: "Hoja ancha de estilo chino. Pica, aplasta y traslada ingredientes.",
+    stock: 1,
     precio: 169990
   },
   {
@@ -118,6 +125,7 @@ var PRODUCTS = [
     imagen: "img/kiri-cleaver.jpg",
     acero: "Acero 52100 al carbono · Forjado a mano",
     descripcion: "Cleaver con punta en ángulo tipo kiritsuke. Más control en cortes de precisión.",
+    stock: 2,
     precio: 169990
   },
 

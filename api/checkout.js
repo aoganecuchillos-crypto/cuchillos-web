@@ -27,7 +27,8 @@ module.exports = async function handler(req, res) {
   for (const line of Array.isArray(body.items) ? body.items : []) {
     const p = PRODUCTS.find((x) => x.id === line.id);
     const qty = Math.floor(Number(line.qty));
-    if (!p || typeof p.precio !== "number" || p.agotado || !(qty >= 1 && qty <= 10)) {
+    const max = typeof p?.stock === "number" ? Math.min(p.stock, 10) : 10;
+    if (!p || typeof p.precio !== "number" || p.agotado || !(qty >= 1 && qty <= max)) {
       return res.status(400).json({ error: "Producto inválido" });
     }
     items.push({

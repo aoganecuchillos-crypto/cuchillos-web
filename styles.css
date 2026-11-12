@@ -169,6 +169,8 @@ h1, h2, h3 { font-family: var(--serif); line-height: 1.2; margin: 0 0 .5em; }
 }
 .is-agotado .badge { background: var(--muted); }
 .is-agotado .product-img img, .is-agotado .product-img svg { opacity: .55; }
+.stock { color: var(--orange-deep) !important; font-size: 13px !important; font-weight: 700; margin: -10px 0 14px !important; }
+.detail-info .stock { margin: 0 !important; }
 .link-btn { background: none; border: 0; padding: 0; font: inherit; color: inherit; cursor: pointer; text-align: left; }
 .link-btn:hover { color: var(--blue); }
 .linea + .linea { margin-top: 64px; }
@@ -299,6 +301,7 @@ h1, h2, h3 { font-family: var(--serif); line-height: 1.2; margin: 0 0 .5em; }
 .cart-item .sub { color: var(--muted); font-size: 14px; }
 .qty { display: flex; align-items: center; gap: 8px; }
 .qty button { width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--line); background: var(--paper); cursor: pointer; font-size: 16px; }
+.qty button:disabled { opacity: .35; cursor: not-allowed; }
 .cart-empty { color: var(--muted); text-align: center; padding: 32px 0; }
 .checkout { display: grid; gap: 14px; }
 .checkout fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 8px; }
