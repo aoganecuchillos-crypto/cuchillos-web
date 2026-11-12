@@ -15,9 +15,9 @@ var SITE = {
 };
 
 var AFILADO = [
-  { nombre: "Cuchillos grandes", ejemplos: "Chef, Deba, Yanagiba, Bunka", precio: 10000 },
-  { nombre: "Cuchillos medianos", ejemplos: "Nakiri, Santoku", precio: 8000 },
-  { nombre: "Cuchillos pequeños", ejemplos: "Petty, Puntilla", precio: 6000 }
+  { nombre: "Cuchillos grandes", ejemplos: "Chef, Deba, Yanagiba, Bunka", precio: 15000 },
+  { nombre: "Cuchillos medianos", ejemplos: "Nakiri, Santoku", precio: 10000 },
+  { nombre: "Cuchillos pequeños", ejemplos: "Petty, Puntilla", precio: 8000 }
 ];
 
 // Cada línea de cuchillos aparece como un bloque separado en la tienda
@@ -66,7 +66,7 @@ var PRODUCTS = [
     incluye: "Saya (funda) de madera",
     acero: "Acero 52100 al carbono · Forjado a mano",
     medidas: "Hoja 25 cm · Mango 14 cm",
-    descripcion: "El cuchillo de chef japonés. Versátil para cortar proteínas, verduras y hierbas.",
+    descripcion: "El clásico cuchillo de chef. Versátil para cortar proteínas, verduras y hierbas.",
     stock: 2,
     precio: 169990
   },
