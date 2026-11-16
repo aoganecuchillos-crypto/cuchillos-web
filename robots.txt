@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://cuchillos-web.vercel.app/sitemap.xml
+Sitemap: https://www.aogane.cl/sitemap.xml
