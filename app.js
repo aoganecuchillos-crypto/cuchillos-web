@@ -228,7 +228,7 @@
     }).join("");
 
     var cotizar = waLink("Hola Aogane, quiero cotizar un afilado. Te envío fotos de mis cuchillos.");
-    $("#heroWhatsapp").href = cotizar;
+    $("#heroInstagram").href = SITE.instagram ? "https://ig.me/m/" + SITE.instagram : cotizar;
     $("#contactWhatsapp").href = cotizar;
     $("#waFloat").href = waLink("Hola Aogane, tengo una consulta.");
     $("#year").textContent = "© " + new Date().getFullYear();
