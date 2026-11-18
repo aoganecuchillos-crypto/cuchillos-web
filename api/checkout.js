@@ -48,10 +48,8 @@ module.exports = async function handler(req, res) {
 
   const preference = {
     items,
-    payer: {
-      name: String(cliente.nombre || "").slice(0, 100),
-      email: String(cliente.email || "").slice(0, 150)
-    },
+    // El correo lo pide Mercado Pago al pagar; aquí solo va el nombre
+    payer: { name: String(cliente.nombre || "").slice(0, 100) },
     back_urls: {
       success: `${origin}/?pago=ok`,
       pending: `${origin}/?pago=pendiente`,

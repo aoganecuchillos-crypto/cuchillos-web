@@ -328,11 +328,28 @@
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeCart(); });
 
   var form = $("#checkoutForm");
-  form.addEventListener("change", function () {
+  function updateEntrega() {
     var regiones = form.entrega.value === "regiones";
     form.querySelector(".only-regiones").hidden = !regiones;
     form.direccion.required = regiones;
-  });
+  }
+  form.addEventListener("change", updateEntrega);
+
+  // Recuerda los datos del cliente en su navegador para que no los vuelva a escribir
+  var DATOS = KEY + "-cliente";
+  try {
+    var guardado = JSON.parse(localStorage.getItem(DATOS)) || {};
+    ["nombre", "telefono", "direccion"].forEach(function (k) { if (guardado[k]) form[k].value = guardado[k]; });
+    if (guardado.entrega) form.entrega.value = guardado.entrega;
+  } catch (e) {}
+  updateEntrega();
+  function rememberCliente(data) {
+    try {
+      localStorage.setItem(DATOS, JSON.stringify({
+        nombre: data.nombre, telefono: data.telefono, direccion: data.direccion, entrega: data.entrega
+      }));
+    } catch (e) {}
+  }
 
   function whatsappOrder(data, pagado) {
     var txt = (pagado ? "Hola Aogane, acabo de pagar este pedido con Mercado Pago:\n" : "Hola Aogane, quiero hacer este pedido:\n") +
@@ -352,8 +369,6 @@
     $("#payNote").textContent = online
       ? "Pago seguro con tarjeta de crédito o débito a través de Mercado Pago."
       : "Te respondemos por WhatsApp para confirmar stock, entrega y forma de pago.";
-    form.email.required = online;
-    $("#emailLabel").hidden = !online;
   }
 
   setCheckoutMode(false);
@@ -368,9 +383,9 @@
       entrega: form.entrega.value,
       nombre: form.nombre.value.trim(),
       telefono: form.telefono.value.trim(),
-      email: form.email.value.trim(),
       direccion: form.direccion.value.trim()
     };
+    rememberCliente(data);
     var btn = $("#payBtn"), msg = $("#formMsg");
     if (!pagoOnline) {
       window.open(whatsappOrder(data), "_blank", "noopener");
